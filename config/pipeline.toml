@@ -41,3 +41,12 @@ bls_frequency_factor = 1.0   # passo della griglia di periodi (1 = default di as
 # eventi isolati: almeno event_min_points cadenze consecutive oltre event_sigma σ robuste
 event_sigma = 4.0
 event_min_points = 3         # 6 minuti: un punto singolo (raggio cosmico) non basta
+
+[models]
+# ingressi: design_matrix in models.py (ampiezze in unità di rumore punto-punto, scalatura robusta)
+seed = 103
+if_n_estimators = 500
+if_max_samples = 256         # default di Isolation Forest: sottocampioni piccoli isolano meglio
+lof_n_neighbors = 50         # vicini per la densità locale: più del default (20) per stabilità
+compare_top_k = [50, 100, 300]
+top_n = 50                   # candidati con grafici

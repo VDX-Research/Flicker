@@ -115,6 +115,56 @@ On the development sample (2,980 curves, 149 s with 8 processes, no errors, all 
   "Impulsive outlier" cadences. These are the first artifact rejection criteria.
 - BLS: 34% of curves have `bls_snr` < 7, the level of the synthetic null curve (4.4–5.6).
 
+## Models and ranking (PHASE 3)
+
+`src/vdxtess/models.py`, parameters in `[models]` of `config/pipeline.toml`, output
+`data/ranking_s103_<...>.csv` and plots in `data/plots/s103_<...>/` (not tracked).
+
+- **Inputs** (`design_matrix`): 19 columns, all dimensionless or in units of the point-to-point noise
+  (`p2p_std`): e.g. `std/p2p_std`, `amp_90/p2p_std`, `amp_98/amp_90` (tail weight), asinh of skewness and
+  kurtosis, log of `eta`, periods, BLS SNR, log1p of the event counts and SNRs. A faint star that is pure
+  noise and a bright star that is pure noise get the same row (tested). Then `RobustScaler`
+  (median 0, IQR 1).
+- **Two methods**, chosen because they look at different things:
+  - Isolation Forest (500 trees, 256 samples, seed 103) finds global anomalies, with extreme values in a few features;
+  - Local Outlier Factor (50 neighbours) finds local anomalies: unusual combinations relative to the
+    nearest neighbours.
+- **Ranking**: the mean of the two percentile ranks (1 = most anomalous). Ties are broken by the Isolation
+  Forest score, then by TIC, so the order is deterministic. For each star, `drivers` lists the three features
+  furthest from the median, so the reason is readable.
+- **Plots** for the first `top_n` = 50: raw curve and 10-min bins; flattened curve with the strongest dip
+  and flare marked; Lomb-Scargle periodogram; BLS phase fold.
+
+On the development sample (2,980 curves, < 1 s):
+
+| comparison IF vs LOF | value |
+|---|---|
+| Spearman rank correlation | 0.53 |
+| shared in top 50 / 100 / 300 | 10 / 23 / 83 |
+
+The agreement is moderate: the two methods disagree on most of the top, as expected from what each
+measures, and the combined rank rewards the objects that both consider unusual. Composition of the top 50
+compared with all curves:
+
+| Tmag | ≤ 10 | 10–13 | 13–16 | 16–18 | > 18 |
+|---|---|---|---|---|---|
+| top 50 | 40% | 32% | 6% | 4% | 18% |
+| all | 35.7% | 16.2% | 14.1% | 15.9% | 18.0% |
+
+Noise normalization works: faint stars are not over-represented. The first ten are dominated by heavy
+tails with strong negative skewness (eclipsing-binary-like light curves) or positive skewness with high
+kurtosis (flare-like). Signals that need the artifact rejection phase:
+
+- **Events at segment edges**: 26% of the top 50 have the strongest dip or flare within 0.1 d of an edge,
+  against 15.3% of all curves.
+- **Near-zero median flux**: 11 of the top 50 (all Tmag ≥ 17) have a relative scatter `mad_std` > 0.3,
+  i.e. a PDCSAP median close to zero after background subtraction. Dividing by a running median that
+  approaches zero produces spikes of hundreds to thousands, which show up as dips and flares
+  (e.g. TIC 144639753, TIC 1816731414). In the whole sample, 811 curves (27%) are in this regime.
+
+The ranking is a list of objects to look at, ordered by how unusual they are. It contains known variable
+stars and artifacts. It is not a list of discoveries.
+
 ## Usage
 
 ```bash
@@ -126,6 +176,7 @@ uv pip install --python .venv/bin/python -e ".[test]"
 .venv/bin/python scripts/fase1.py --sample    # development sample
 .venv/bin/python scripts/fase1.py --all       # final run, only with frozen = true
 .venv/bin/python scripts/fase2.py --sample    # features on the cleaned curves
+.venv/bin/python scripts/fase3.py --sample    # models, ranking, plots of the top 50
 ```
 
 Downloaded light curves (`data/cache/lc/`, ~1.9 MB each, ~25 GB total) and cleaned light curves
@@ -148,3 +199,4 @@ the scripts and pytest automatically add `src/` to `sys.path`.
 - PHASE 0: literature review, `docs/literature.md`
 - PHASE 1: data, cleaning, cache, Core Dataset
 - PHASE 2: per-TIC features and artifact diagnostics
+- PHASE 3: Isolation Forest and LOF, comparison, ranking, plots

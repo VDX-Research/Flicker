@@ -7,3 +7,4 @@ data/cache/
 data/runs/
 .env
 *.egg-info/
+data/plots/
