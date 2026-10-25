@@ -1,0 +1,8 @@
+criterion,description,all_sequential,all_independent,top50_sequential,top50_independent,top300_sequential,top300_independent
+flusso_indefinito,dispersione relativa mad_std > max_mad_std: mediana PDCSAP vicina a zero,811,811.0,11,11.0,50,50.0
+contaminazione,CROWDSAP < min_crowdsap: meno di metà del flusso in apertura è del target,550,1312.0,3,14.0,30,80.0
+sistematica_centroide,|r| flusso-centroide > max_corr_centr,2,51.0,0,0.0,2,2.0
+sistematica_fondo,|r| flusso-fondo > max_abs_corr_bkg,25,30.0,3,3.0,17,20.0
+evento_al_bordo,l'evento che guida il punteggio è entro min_edge_d dal bordo di un segmento,238,414.0,4,6.0,72,105.0
+evento_impulsive_outlier,frazione di cadenze 'Impulsive outlier' nell'evento >= max_q512_frac,0,1.0,0,0.0,0,0.0
+sopravvissute,nessun criterio fallito,1354,,29,,129,

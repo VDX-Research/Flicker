@@ -50,3 +50,18 @@ if_max_samples = 256         # default di Isolation Forest: sottocampioni piccol
 lof_n_neighbors = 50         # vicini per la densità locale: più del default (20) per stabilità
 compare_top_k = [50, 100, 300]
 top_n = 50                   # candidati con grafici
+
+[artifacts]
+# scarto esplicito degli artefatti (src/vdxtess/artifacts.py): criteri in ordine fisso, il primo
+# che fallisce dà il motivo. Soglie decise sul campione di sviluppo (README, "Scarto degli artefatti").
+# criteri sulla stella
+max_mad_std = 0.3            # dispersione relativa oltre 0.3: mediana PDCSAP vicina a zero
+min_crowdsap = 0.5           # meno di metà del flusso in apertura viene dal target
+max_corr_centr = 0.5         # |r| del flusso appiattito con un centroide
+max_abs_corr_bkg = 0.3       # |r| del flusso appiattito con il fondo
+# criteri sull'evento che guida il punteggio (dip, brillamento o transito BLS)
+min_edge_d = 0.1             # evento più forte entro 0.1 d dal bordo di un segmento
+max_q512_frac = 0.5          # metà o più delle cadenze dell'evento con "Impulsive outlier"
+# solo avvisi, non scartano
+warn_centr_shift = 20.0      # ~95° percentile sugli eventi del campione; cresce con l'SNR dell'evento
+warn_crowdsap = 0.8

@@ -165,6 +165,88 @@ kurtosis (flare-like). Signals that need the artifact rejection phase:
 The ranking is a list of objects to look at, ordered by how unusual they are. It contains known variable
 stars and artifacts. It is not a list of discoveries.
 
+## Artifact rejection
+
+`src/vdxtess/artifacts.py`, thresholds in `[artifacts]` of `config/pipeline.toml`, script
+`scripts/artefatti.py`. Outputs:
+
+- `data/artifacts_s103_<...>.csv`: the ranking plus the driving event, the rejection reason
+  (`artifact_reason`, empty if the star passes) and the warnings;
+- `data/artifact_counts_s103_<...>.csv`: counts per criterion;
+- `data/candidates_s103_<...>.csv`: the first `top_n` = 50 survivors in rank order;
+- plots in `data/plots/s103_<...>_candidati/`.
+
+The criteria are applied in a fixed order. A star is rejected by the **first** criterion it fails. Each criterion is
+counted in two ways:
+
+- **sequential**: how many stars it removes after the previous criteria. These counts plus the survivors sum to the total.
+- **independent**: how many stars would fail it on its own.
+
+This makes two runs with different thresholds comparable criterion by criterion. A missing diagnostic (NaN) never rejects.
+
+| # | code | rejects when | threshold |
+|---|---|---|---|
+| 1 | `flusso_indefinito` | relative scatter `mad_std` > threshold: PDCSAP median close to zero | 0.3 |
+| 2 | `contaminazione` | `CROWDSAP` < threshold: less than half of the flux in the aperture belongs to the target | 0.5 |
+| 3 | `sistematica_centroide` | correlation of the flattened flux with the centroids > threshold | 0.5 |
+| 4 | `sistematica_fondo` | \|correlation of the flattened flux with the background\| > threshold | 0.3 |
+| 5 | `evento_al_bordo` | the driving event lies within the threshold of a segment edge | 0.1 d |
+| 6 | `evento_impulsive_outlier` | fraction of "Impulsive outlier" (bit 512) cadences in the driving event ≥ threshold | 0.5 |
+
+Criteria 1–4 apply to the star. Criteria 5–6 apply only to the **driving event**, which is read from the first entry of
+`drivers`:
+
+- a dip, flare or BLS feature gives that event;
+- a shape feature (skewness, tails, amplitude) gives a dip if the skewness is negative and a flare if it is positive;
+- otherwise there is no driving event (e.g. periodic variability) and criteria 5–6 do not apply.
+
+So a flare at an edge does not reject an eclipsing binary that was ranked for its eclipses.
+
+**Warnings** do not reject; they say what to check by hand:
+
+- `spostamento_centroide`: centroid shift during the event > 20 σ out of event;
+- `impulsive_outlier_nell_evento`: at least one cadence with bit 512 in the event;
+- `contaminazione_parziale`: `CROWDSAP` < 0.8.
+
+**Why the thresholds and the warnings are set this way.** All thresholds were decided on the development sample and
+then frozen with the rest of the parameters (Protocol).
+
+- *Centroid shift (warning only).* The shift is measured in units of the out-of-event scatter, so it grows with the
+  event SNR. Deep eclipses on bright stars exceed any fixed threshold even when they are on target.
+- *Bit 512 (warning; the fraction criterion removes nothing on the sample).* SPOC flags the peaks of real flares
+  with bit 512 too. The fraction criterion is still documented and counted, so the full run can be compared with
+  the sample.
+- *`sistematica_fondo`, \|r\| > 0.3.* Curves above this value are strongly over-represented at the top of the ranking:
+  20 of the top 300, against 30 in the whole sample.
+- *`sistematica_centroide`, 0.5.* The median correlation with the centroids grows towards faint stars, so a lower
+  threshold would mostly remove faint stars.
+
+On the development sample (2,980 curves):
+
+| criterion | all, sequential | all, independent | top 300, seq. | top 300, ind. | top 50, seq. | top 50, ind. |
+|---|---|---|---|---|---|---|
+| `flusso_indefinito` | 811 | 811 | 50 | 50 | 11 | 11 |
+| `contaminazione` | 550 | 1,312 | 30 | 80 | 3 | 14 |
+| `sistematica_centroide` | 2 | 51 | 2 | 2 | 0 | 0 |
+| `sistematica_fondo` | 25 | 30 | 17 | 20 | 3 | 3 |
+| `evento_al_bordo` | 238 | 414 | 72 | 105 | 4 | 6 |
+| `evento_impulsive_outlier` | 0 | 1 | 0 | 0 | 0 | 0 |
+| survivors | 1,354 | | 129 | | 29 | |
+
+The 50 candidates (the first 50 survivors, ranks 1–110 of the ranking):
+
+- by driving event: 36 dips and 14 flares;
+- by Tmag: 26 at ≤ 10, 22 at 10–13, 2 at 13–16, none fainter than 16;
+- warnings: 13 have at least one (6 centroid shift, 5 bit 512 in the event, 7 partial contamination).
+
+The rejection removes the faint stars with an undefined flux, which made up 18% of the top 50 before.
+
+Sensitivity check: re-running the models only on the stars that pass criteria 1–4 changes the robust scaling and the
+neighbours. The first 50 survivors of that ranking share 36 of 50 with the candidates.
+
+The candidates are still candidates. Many will be known variable stars (eclipsing binaries, flare stars); the
+cross-match is PHASE 4.
+
 ## Usage
 
 ```bash
@@ -177,6 +259,7 @@ uv pip install --python .venv/bin/python -e ".[test]"
 .venv/bin/python scripts/fase1.py --all       # final run, only with frozen = true
 .venv/bin/python scripts/fase2.py --sample    # features on the cleaned curves
 .venv/bin/python scripts/fase3.py --sample    # models, ranking, plots of the top 50
+.venv/bin/python scripts/artefatti.py --sample  # artifact rejection, counts, 50 candidates with plots
 ```
 
 Downloaded light curves (`data/cache/lc/`, ~1.9 MB each, ~25 GB total) and cleaned light curves
@@ -200,3 +283,4 @@ the scripts and pytest automatically add `src/` to `sys.path`.
 - PHASE 1: data, cleaning, cache, Core Dataset
 - PHASE 2: per-TIC features and artifact diagnostics
 - PHASE 3: Isolation Forest and LOF, comparison, ranking, plots
+- Artifact rejection: explicit criteria, counts per criterion, candidates
