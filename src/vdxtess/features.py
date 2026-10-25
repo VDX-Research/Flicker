@@ -51,7 +51,7 @@ def flatten(flux: np.ndarray, segment: np.ndarray, window_d: float) -> np.ndarra
     trend = np.empty_like(flux)
     for s in np.unique(segment):
         m = segment == s
-        trend[m] = median_filter(flux[m], size=min(size, int(m.sum()) | 1), mode="nearest")
+        trend[m] = median_filter(flux[m], size=min(size, int(m.sum()) | 1), mode="reflect")
     return flux / trend
 
 
@@ -89,7 +89,8 @@ def periodogram(t: np.ndarray, f: np.ndarray, min_period: float, max_period: flo
 def bls(t: np.ndarray, f: np.ndarray, min_period: float, max_period: float, durations_h: list[float],
         frequency_factor: float) -> dict:
     durations = np.asarray(durations_h) / 24
-    model = BoxLeastSquares(t, f)
+    # errore per bin = rumore robusto della curva binnata, così depth_snr è un vero SNR
+    model = BoxLeastSquares(t, f, dy=np.full(len(f), mad_std(f)))
     periods = model.autoperiod(durations, minimum_period=min_period, maximum_period=max_period,
                                frequency_factor=frequency_factor)
     r = model.power(periods, durations, objective="snr")
@@ -171,7 +172,7 @@ def diagnostics(d: pd.DataFrame, flat: np.ndarray, groups: dict, out: dict) -> d
         shift = []
         for c in ("mom_centr1", "mom_centr2"):
             x = d[c].to_numpy()
-            if g.size == 0 or not np.isfinite(x).any():
+            if g.size == 0 or not np.isfinite(x[g]).any():
                 continue
             outside = np.delete(x, g)
             sd = mad_std(outside[np.isfinite(outside)])
