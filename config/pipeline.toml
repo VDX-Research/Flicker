@@ -23,3 +23,21 @@ quality_bitmask = 16575
 gap_days = 0.5           # un buco più lungo separa due segmenti
 min_segment_days = 0.5   # frammenti più corti tra due buchi scartati (cadenze contate nel riepilogo)
 min_points = 1000        # curve con meno cadenze valide escluse
+
+[features]
+# periodogramma di Lomb-Scargle sulla curva non appiattita, in bin per velocità
+ls_bin_minutes = 10.0
+ls_min_period_d = 0.05       # 72 min, sopra il limite di Nyquist dei bin da 10 min
+ls_max_period_d = 13.0       # circa metà della durata del settore: almeno due cicli
+ls_samples_per_peak = 5
+# appiattimento (mediana mobile) per BLS ed eventi: lungo ~3 volte il transito più lungo cercato
+flatten_window_d = 1.0
+# ricerca di transiti (Box Least Squares) sulla curva appiattita
+bls_bin_minutes = 10.0
+bls_min_period_d = 0.5
+bls_max_period_d = 13.0      # almeno due transiti nel settore
+bls_durations_h = [1.0, 2.0, 4.0, 8.0]
+bls_frequency_factor = 1.0   # passo della griglia di periodi (1 = default di astropy)
+# eventi isolati: almeno event_min_points cadenze consecutive oltre event_sigma σ robuste
+event_sigma = 4.0
+event_min_points = 3         # 6 minuti: un punto singolo (raggio cosmico) non basta
