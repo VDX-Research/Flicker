@@ -1,0 +1,18 @@
+{
+  "written_at": "2026-10-25T23:20:12+00:00",
+  "messages": [
+    {
+      "kind": "object",
+      "type": "custom.dataset",
+      "externalId": "tess-s103-spoc-2min-dr141",
+      "properties": {
+        "source": "MAST, TESS SPOC light curves",
+        "description": "Curve di luce PDCSAP a 2 minuti del settore 103, data release 141, pipeline spoc-5.0.126-20251212. Pulite con config/pipeline.toml di vdx-research-tess.",
+        "size": "3000 curve, 5.8 GB",
+        "url": "https://archive.stsci.edu/missions/tess/tid/s0103/",
+        "license": "Dati pubblici NASA/MAST; citare TESS SPOC (Jenkins et al. 2016) e la release note DRN141"
+      },
+      "name": "TESS S103 SPOC 2-min (DR141)"
+    }
+  ]
+}

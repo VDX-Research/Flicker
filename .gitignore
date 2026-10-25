@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# cache dei FITS e prodotti intermedi: si rigenerano con la pipeline
+data/cache/
+data/runs/
+.env
+*.egg-info/

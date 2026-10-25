@@ -1,0 +1,20 @@
+{
+  "sector": 103,
+  "cadence_s": 120,
+  "data_release": [
+    141
+  ],
+  "spoc_version": [
+    "spoc-5.0.126-20251212"
+  ],
+  "file_date": [
+    "2026-06-10"
+  ],
+  "downloaded_from": "2026-10-25T23:13:02+00:00",
+  "downloaded_to": "2026-10-25T23:19:51+00:00",
+  "n_files": 3000,
+  "bytes": 5780177280,
+  "quality_bitmask": 16575,
+  "params_fingerprint": "6370b5934763aabe",
+  "written_at": "2026-10-25T23:20:12+00:00"
+}

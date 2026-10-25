@@ -1,0 +1,32 @@
+[project]
+name = "vdx-research-tess"
+version = "0.1.0"
+description = "Ricerca riproducibile di curve di luce TESS anomale non catalogate (VDX Research)"
+requires-python = ">=3.12,<3.13"
+# versioni esatte: la pipeline deve dare gli stessi numeri a ogni esecuzione
+dependencies = [
+  "lightkurve==2.6.0",
+  "astropy==8.0.2",
+  "astroquery==0.4.11",
+  "numpy==2.5.4",
+  "pandas==2.3.3",
+  "scipy==1.18.1",
+  "scikit-learn==1.9.1",
+  "matplotlib==3.11.2",
+  "pyarrow==26.0.0",
+  "vdx-core-client @ file:///Users/filippo/Desktop/vdx/core/clients/python",
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

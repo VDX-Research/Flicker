@@ -1,0 +1,25 @@
+# Parametri della pipeline. Si tarano SOLO sul campione di sviluppo (~3k target);
+# prima della corsa finale su tutti i target si imposta frozen = true e non si toccano più.
+frozen = false
+
+[dataset]
+sector = 103
+cadence_s = 120          # solo curve SPOC a 2 minuti
+data_release = 141       # DRN141 (sector 103), l'unica release accettata
+# settori con note di rilascio pubblicate usati per la persistenza; 105-107 esclusi (v1)
+persistence_sectors_max = 104
+
+[sample]
+size = 3000
+seed = 103
+# limiti delle classi di magnitudine TESS (Tmag); allocazione proporzionale
+tmag_edges = [-99.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 99.0]
+
+[clean]
+# bitmask dei flag QUALITY scartati: default di lightkurve 2.6 (17087) meno
+# "Impulsive outlier" (512), che può coincidere con eventi brevi reali: resta in colonna
+# e lo valuta la fase di scarto degli artefatti.
+quality_bitmask = 16575
+gap_days = 0.5           # un buco più lungo separa due segmenti
+min_segment_days = 0.5   # frammenti più corti tra due buchi scartati (cadenze contate nel riepilogo)
+min_points = 1000        # curve con meno cadenze valide escluse
