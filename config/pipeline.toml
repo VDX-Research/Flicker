@@ -1,6 +1,6 @@
 # Parametri della pipeline. Si tarano SOLO sul campione di sviluppo (~3k target);
 # prima della corsa finale su tutti i target si imposta frozen = true e non si toccano più.
-frozen = false
+frozen = true
 
 [dataset]
 sector = 103
