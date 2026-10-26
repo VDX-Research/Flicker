@@ -7,8 +7,9 @@ Ordine degli invii:
 
 Gli invii ripetuti non duplicano: il dataset e i risultati sono riconosciuti per externalId,
 l'esecuzione per key (commit, impronta dei parametri, settore, selezione), i grafici per contenuto.
-Se Core rifiuta il dataset (il token del progetto potrebbe non poterlo creare) l'esecuzione è
-legata solo al progetto; se rifiuta `extra` dei risultati, si inviano senza.
+Il token del progetto non può creare il dataset (va creato dalla console Research con lo stesso
+externalId), ma può collegarlo: se il collegamento fallisce l'esecuzione è legata solo al progetto.
+Se Core rifiuta `extra` dei risultati, si inviano senza.
 
 Uso:
   python scripts/fase5.py --sample [--dry-run]   # campione di sviluppo
@@ -119,10 +120,12 @@ def main():
     dataset = None
     if dataset_msgs:
         r = c.send(dataset_msgs)
+        # il token del progetto può solo collegare il dataset, non crearlo: se Core lo rifiuta lo si
+        # collega comunque per externalId, nel caso sia stato creato dalla console
+        dataset = ds_id
         if rejected(r):
-            log["warnings"].append(f"dataset rifiutato: {rejected(r)[0]}; crealo dalla console con externalId {ds_id}")
+            log["dataset"] = {"rejected": rejected(r)[0]}
         else:
-            dataset = ds_id
             log["dataset"] = r["results"][0]
     else:
         log["warnings"].append("nessun messaggio di dataset in data/outbox/: esegui scripts/fase1.py")
@@ -131,7 +134,9 @@ def main():
     run_msg = core.run_message(commit, fp, sector, label, params, items, duration, outcome, project, dataset)
     r = c.send([run_msg])
     if rejected(r) and dataset:
-        log["warnings"].append(f"esecuzione rifiutata con il dataset ({rejected(r)[0]}): inviata senza")
+        log["warnings"].append(f"esecuzione rifiutata con il dataset ({rejected(r)[0]}): inviata senza; "
+                               f"crea il dataset dalla console con externalId {ds_id}")
+        dataset = None
         r = c.send([core.run_message(commit, fp, sector, label, params, items, duration, outcome, project)])
     if rejected(r):
         err = rejected(r)[0]
