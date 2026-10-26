@@ -247,6 +247,89 @@ neighbours. The first 50 survivors of that ranking share 36 of 50 with the candi
 The candidates are still candidates. Many will be known variable stars (eclipsing binaries, flare stars); the
 cross-match is PHASE 4.
 
+## Cross-match, systematics and persistence (PHASE 4)
+
+Code: `src/vdxtess/crossmatch.py` (pure functions, tested without network) and `scripts/fase4.py`
+(queries, cache, other-sector downloads). Parameters: `[crossmatch]` in `config/pipeline.toml`.
+
+**Catalogues.** For each candidate:
+
+| Catalogue | Access | Joined by |
+|---|---|---|
+| SIMBAD (`otype`, `V`) | astroquery 0.4.11, cone of 42" | nearest object within 5" |
+| VSX (`B/vsx/vsx`) | VizieR, cone of 42" | nearest object within 5" |
+| TOI (ExoFOP) | `data/catalogs/toi_exofop.csv`, downloaded 2026-10-26 | TIC ID |
+| TESS eclipsing binaries (Prša et al. 2022, `J/ApJS/258/16`, sectors 1–26) | VizieR | TIC ID |
+
+Every answer, empty ones included, is cached per TIC in `data/catalogs/{simbad,vsx,tess_eb}/`, and the query
+time is in `data/catalogs/queries.json`. Re-runs reuse the cache, so the labels do not change when a
+catalogue is updated. `--refresh` queries the catalogues again.
+
+**Label** (`catalog_label`), for the event that drives the score (`dip`, `flare` or `bls`):
+
+- `noto`: a catalogue gives the target a class that explains the event.
+  - Dip and BLS: SIMBAD EB\*, Or\*, TT\*, Y\*O, Ae\*, Pl; VSX types E\* (except ELL), UXOR, IN\*, \*TTS,
+    YSO, DIP; any TOI; any TESS EB.
+  - Flare: SIMBAD Fl\*, Er\*, BY\*, RS\*, TT\*, Or\*, Y\*O, CV\*, No\*; VSX UV, FLARE, BY, RS, IN\*,
+    \*TTS, YSO, UG, NL, N, ZAND, CV.
+  - SIMBAD candidate classes (`EB?`, `Y*?`, `V*?`) count as the class. VSX compound types (`EA/DM`,
+    `BY+UV`, `ROT:`) are split, and the `:` uncertainty mark is ignored.
+- `noto con classe diversa`: the target has a variability class, but that class does not explain the event.
+  An example is a rotator (ROT) with a dip.
+- `assente`: no variability class in any of the four catalogues. The target can still appear as a plain
+  star (`*`, `PM*`, `SB*`, `s*b`, `Em*`...).
+
+A known variable star farther than 5" but within 42" (2 TESS pixels) is not the target, but it can
+contaminate the aperture. It is listed in `variabile_vicina`.
+
+**Coincident events (systematics).** For each dip or flare, the code counts the other stars on the same
+camera/CCD whose strongest event of the same type falls within ±0.05 d. That count is compared with a
+Poisson expectation: λ = (events on the CCD) × 2 × 0.05 d / (time span). With p < 0.001 the event is
+`sospetto_sistematica`. The probability does not depend on the size of the population, so the same
+threshold holds for the sample and for all targets.
+
+**Persistence.** The other SPOC sectors of each candidate (up to `persistence_sectors_max`, from
+`data/overlap_s103.csv`) are downloaded as 2-min light curves to `data/cache/persistence/`. 20-s targets
+also have the 2-min product. Each curve is cleaned and its features recomputed with the same parameters as
+sector 103. The labels are:
+
+- `persistente`: the same event type is detected with SNR ≥ 10 in at least one other sector.
+- `non persistente`: other sectors exist, but none of them has such a detection.
+- `persistenza non verificabile`: there is no other sector, or none is readable. These candidates are kept
+  and reported separately.
+
+Other-sector products used on the sample: 190 curves with 0 errors, SPOC spoc-5.0.9-20200827 to
+spoc-5.0.126-20251212, data releases 38–142. Sectors 105–107 are not used. They are noted for a v2.
+
+**Sample results** (50 candidates, parameters fingerprint `b8cb320b43cbd27f`):
+
+| | noto | noto con classe diversa | assente |
+|---|---|---|---|
+| dip | 24 | 7 | 5 |
+| flare | 7 | 6 | 1 |
+| total | 31 | 13 | 6 |
+
+- Persistence: 44 persistente, 3 non persistente, 3 persistenza non verificabile.
+- 0 `sospetto_sistematica`; 14 with a known variable star within 42".
+- The TESS EB catalogue changes two candidates from `assente` to `noto`: TIC 133701671 (P = 4.70 d) and
+  TIC 382308684 (P = 9.07 d).
+
+The 6 `assente` candidates are not in SIMBAD, VSX, TOI or the TESS EB catalogue as variables. They are
+**candidates, not discoveries**:
+
+| rank | TIC | event | SIMBAD | Tmag | persistence | note |
+|---|---|---|---|---|---|---|
+| 2 | 292292315 | dip | HD 170312 | 8.29 | persistente | |
+| 31 | 149064422 | flare | Gaia DR3 6007435426246132736 | 12.18 | non verificabile | no other sector |
+| 37 | 469974264 | dip | — | 11.90 | persistente | no SIMBAD object within 5" |
+| 45 | 410151515 | dip | HD 214554 | 8.31 | persistente | |
+| 47 | 142329176 | dip | HD 137217 | 8.61 | persistente | |
+| 81 | 138188560 | dip | HD 136505 | 5.67 | persistente | variables at 15" (ROT) and 37" (DSCT\|GDOR\|SXPHE) |
+
+Five of the six are bright stars with dips that persist across sectors. The most likely explanation is
+eclipsing binaries that have not yet been catalogued, or that are listed in catalogues not queried here.
+For TIC 138188560, the 15" neighbour also has to be excluded as the source.
+
 ## Usage
 
 ```bash
@@ -260,6 +343,7 @@ uv pip install --python .venv/bin/python -e ".[test]"
 .venv/bin/python scripts/fase2.py --sample    # features on the cleaned curves
 .venv/bin/python scripts/fase3.py --sample    # models, ranking, plots of the top 50
 .venv/bin/python scripts/artefatti.py --sample  # artifact rejection, counts, 50 candidates with plots
+.venv/bin/python scripts/fase4.py --sample      # cross-match SIMBAD/VSX/TOI/TESS EB, coincidences, persistence
 ```
 
 Downloaded light curves (`data/cache/lc/`, ~1.9 MB each, ~25 GB total) and cleaned light curves
@@ -284,3 +368,4 @@ the scripts and pytest automatically add `src/` to `sys.path`.
 - PHASE 2: per-TIC features and artifact diagnostics
 - PHASE 3: Isolation Forest and LOF, comparison, ranking, plots
 - Artifact rejection: explicit criteria, counts per criterion, candidates
+- PHASE 4: SIMBAD/VSX/TOI/TESS EB cross-match, coincident events, persistence

@@ -65,3 +65,11 @@ max_q512_frac = 0.5          # metà o più delle cadenze dell'evento con "Impul
 # solo avvisi, non scartano
 warn_centr_shift = 20.0      # ~95° percentile sugli eventi del campione; cresce con l'SNR dell'evento
 warn_crowdsap = 0.8
+
+[crossmatch]
+# FASE 4 (src/vdxtess/crossmatch.py, scripts/fase4.py)
+match_radius_arcsec = 5.0        # oggetto di catalogo più vicino entro 5" = il target
+neighbor_radius_arcsec = 42.0    # 2 pixel TESS: variabili note più lontane sono possibili contaminanti
+coincidence_window_d = 0.05      # eventi di altre stelle sullo stesso CCD entro ±1.2 h
+coincidence_max_p = 0.001        # p di Poisson sotto cui l'evento è "sospetto_sistematica"
+persistence_min_snr = 10.0       # evento dello stesso tipo in un altro settore con SNR >= 10
