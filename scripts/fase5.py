@@ -53,6 +53,12 @@ def rejected(res: dict) -> dict[int, str]:
     return {x["index"]: str(x.get("error")) for x in res.get("rejected", [])}
 
 
+def write_log(log: dict, sector: int, label: str, commit: str) -> None:
+    runs = DATA / "runs"
+    runs.mkdir(exist_ok=True)
+    (runs / f"core_s{sector:03d}_{label}_{commit}.json").write_text(json.dumps(log, indent=1, ensure_ascii=False))
+
+
 def main():
     ap = argparse.ArgumentParser()
     g = ap.add_mutually_exclusive_group(required=True)
@@ -128,7 +134,12 @@ def main():
         log["warnings"].append(f"esecuzione rifiutata con il dataset ({rejected(r)[0]}): inviata senza")
         r = c.send([core.run_message(commit, fp, sector, label, params, items, duration, outcome, project)])
     if rejected(r):
-        sys.exit(f"esecuzione rifiutata: {rejected(r)[0]}")
+        err = rejected(r)[0]
+        log["warnings"].append(f"esecuzione rifiutata: {err}")
+        write_log(log, sector, label, commit)
+        hint = ("; il token non è di una source Research (module \"custom\"): creala con "
+                "scripts/create-research-source.ts in Core") if "subject is required" in err else ""
+        sys.exit(f"esecuzione rifiutata: {err}{hint}")
     log["run"] = r["results"][0]
     run_id = int(log["run"]["id"])
 
@@ -163,9 +174,7 @@ def main():
 
     if log["results"]["rejected"] or att["missing"] or att["errors"]:
         log["warnings"].append("invio incompleto: vedi results.rejected e plots")
-    runs = DATA / "runs"
-    runs.mkdir(exist_ok=True)
-    (runs / f"core_s{sector:03d}_{label}_{commit}.json").write_text(json.dumps(log, indent=1, ensure_ascii=False))
+    write_log(log, sector, label, commit)
     config.save_summary("fase5", sector, label, {
         "run_id": run_id, "run_status": log["run"].get("status"), "dataset_linked": dataset is not None,
         "results": log["results"], "plots": {k: v if isinstance(v, int) else len(v) for k, v in att.items()},
