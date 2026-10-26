@@ -66,6 +66,7 @@ def main():
     summary = {"curves": len(f), "ok": len(ok), "errors": int(f.error.notna().sum()),
                "nonfinite_model_features": int((~np.isfinite(ok[MODEL_FEATURES].astype(float))).any(axis=1).sum()),
                "duration_s": round(time.time() - t0, 1), "params_fingerprint": config.fingerprint(cfg)}
+    config.save_summary("fase2", sector, label, summary)
     print("caratteristiche:", json.dumps(summary, indent=1))
     print(f"scritto {out}")
     q = ok[MODEL_FEATURES].describe(percentiles=[0.01, 0.5, 0.99]).T[["1%", "50%", "99%", "max"]]

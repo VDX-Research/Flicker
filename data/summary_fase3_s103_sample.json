@@ -1,0 +1,25 @@
+{
+ "curves": 2980,
+ "spearman_if_lof": 0.5298116716138995,
+ "overlap_top50": 10,
+ "overlap_top100": 23,
+ "overlap_top300": 83,
+ "tmag_top": {
+  "(0, 10]": 0.4,
+  "(10, 13]": 0.32,
+  "(13, 16]": 0.06,
+  "(16, 18]": 0.04,
+  "(18, 21]": 0.18
+ },
+ "tmag_all": {
+  "(0, 10]": 0.357,
+  "(10, 13]": 0.162,
+  "(13, 16]": 0.141,
+  "(16, 18]": 0.159,
+  "(18, 21]": 0.18
+ },
+ "event_within_0.1d_of_edge_top": 0.26,
+ "event_within_0.1d_of_edge_all": 0.153,
+ "duration_s": 0.4,
+ "params_fingerprint": "b8cb320b43cbd27f"
+}

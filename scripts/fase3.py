@@ -63,6 +63,7 @@ def main():
     top = r.head(p["top_n"])
     summary = {"curves": len(r), **cmp, **composition(top, r, 0.1),
                "duration_s": round(time.time() - t0, 1), "params_fingerprint": config.fingerprint(cfg)}
+    config.save_summary("fase3", sector, label, summary)
     print("modelli:", json.dumps(summary, indent=1))
     print(f"scritto {out}")
     cols = ["rank", "tic", "tmag_hdr", "prank_if", "prank_lof", "drivers"]

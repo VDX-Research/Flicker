@@ -1,0 +1,16 @@
+{
+ "n_raw": 56907000,
+ "drop_quality": 6430417,
+ "drop_nonfinite": 4879167,
+ "drop_short_segment": 0,
+ "n_clean": 45597416,
+ "curves_in": 3000,
+ "curves_kept": 2980,
+ "excluded": {
+  "nonpositive_median": 20
+ },
+ "n_files": 3000,
+ "bytes": 5780177280,
+ "duration_s": 20.3,
+ "params_fingerprint": "b8cb320b43cbd27f"
+}

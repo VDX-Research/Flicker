@@ -7,6 +7,7 @@ Uso:
 import argparse
 import json
 import sys
+import time
 from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
@@ -57,6 +58,7 @@ def main():
     if a.all and not cfg["frozen"]:
         sys.exit("parametri non congelati: imposta frozen = true in config/pipeline.toml prima della corsa finale")
 
+    t0 = time.time()
     t = targets(sector, ds["cadence_s"])
     print(f"target S{sector} a {ds['cadence_s']} s: {len(t)} (senza Tmag: {t.tmag.isna().sum()})")
     if a.sample:
@@ -85,7 +87,7 @@ def main():
     summary["curves_in"] = len(meta)
     summary["curves_kept"] = len(kept)
     summary["excluded"] = meta.excluded.fillna("").replace("", pd.NA).dropna().value_counts().to_dict()
-    print("pulizia:", json.dumps(summary, indent=1))
+    summary["n_files"], summary["bytes"] = len(ok), int(ok.bytes.sum())
 
     # versioni dei prodotti e date di scarico: vanno nel README e nel report
     ok = ok.astype({"data_rel": int})
@@ -104,7 +106,11 @@ def main():
 
     if len(products["spoc_version"]) == 1:
         msg = core.dataset_message(sector, ds["data_release"], products["spoc_version"][0], len(ok), products["bytes"])
-        print("dataset:", core.deliver([msg], f"dataset_s{sector:03d}"))
+        print("dataset (outbox, lo invia la FASE 5):", core.write_outbox([msg], f"dataset_s{sector:03d}"))
+
+    summary |= {"duration_s": round(time.time() - t0, 1), "params_fingerprint": products["params_fingerprint"]}
+    config.save_summary("fase1", sector, label, summary)
+    print("pulizia:", json.dumps(summary, indent=1))
 
 
 if __name__ == "__main__":

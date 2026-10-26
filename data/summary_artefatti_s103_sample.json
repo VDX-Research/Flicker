@@ -1,0 +1,7 @@
+{
+ "curves": 2980,
+ "candidates": 50,
+ "rerank_on_star_survivors_shared": 36,
+ "duration_s": 0.5,
+ "params_fingerprint": "b8cb320b43cbd27f"
+}

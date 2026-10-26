@@ -344,18 +344,39 @@ uv pip install --python .venv/bin/python -e ".[test]"
 .venv/bin/python scripts/fase3.py --sample    # models, ranking, plots of the top 50
 .venv/bin/python scripts/artefatti.py --sample  # artifact rejection, counts, 50 candidates with plots
 .venv/bin/python scripts/fase4.py --sample      # cross-match SIMBAD/VSX/TOI/TESS EB, coincidences, persistence
+.venv/bin/python scripts/fase5.py --sample --dry-run  # Core messages to data/outbox/, nothing sent
+.venv/bin/python scripts/fase5.py --sample      # register dataset, run and candidates in VDX Core
 ```
 
 Downloaded light curves (`data/cache/lc/`, ~1.9 MB each, ~25 GB total) and cleaned light curves
 (`data/cache/clean/`, parquet) are stored in local cache and not tracked in the repository.
 
-## VDX Core
+## VDX Core (PHASE 5)
 
-Results are ingested into the VDX Core Research module via `vdx-core-client`. With the environment
-variables `VDX_CORE_URL` and `VDX_TOKEN` (project source token, from
-`scripts/create-research-source.ts` in Core), messages are dispatched; without them, they are written to
-`data/outbox/` and can be sent later: ingestion is idempotent (objects by external ID,
-executions by key).
+`scripts/fase5.py` registers the pipeline in the VDX Core Research module via `vdx-core-client`.
+It reads `VDX_CORE_URL`, `VDX_TOKEN` (project source token, from `scripts/create-research-source.ts`
+in Core) and `PROJECT_ID` from the environment or from the repository's `.env` (not tracked).
+Earlier phases never send anything: PHASE 1 only writes the Dataset message to `data/outbox/`.
+
+What is sent, in order:
+
+1. **Dataset** (`custom.dataset`, external ID `tess-s103-spoc-2min-dr141`): sector, data release,
+   SPOC version, number of curves and size. If Core rejects it, the run is linked to the project only
+   and the dataset must be created from the console with that external ID.
+2. **Run** (`custom.run` event): git commit, all parameters of `config/pipeline.toml`, number of
+   stars analysed (curves with features), total duration of PHASES 1-4, outcome (`ok`, or `partial`
+   if some curves or other-sector downloads failed). The key is
+   `<commit>:<params fingerprint>:S<sector>:<sample|all>`.
+3. **Results** (`custom.result`, external ID `s103-tic-<TIC>`): one per candidate, with the score
+   (combined percentile rank), the catalog reference (`known` / `known_other` / `absent`), the run id,
+   a note (driving event, catalogs, systematics, persistence) and the candidate plot attached.
+   `review` is only a default (`to_review`): re-sending never overwrites a review done in Core.
+
+Re-running is idempotent: objects are matched by external ID, the run by key and attachments by
+content, so nothing is duplicated. The final run on all targets updates the results of the
+sample candidates with the same TIC and links them to the new run. The script refuses to send
+from a working tree with uncommitted changes (the commit hash must identify the code) or if the
+parameters changed after any phase. A log of each send is written to `data/runs/`.
 
 macOS note: if the repository resides in a folder synced with iCloud (Desktop), the editable installation's
 `.pth` file receives the `hidden` attribute flag and Python 3.12 ignores it. For this reason,
@@ -369,3 +390,4 @@ the scripts and pytest automatically add `src/` to `sys.path`.
 - PHASE 3: Isolation Forest and LOF, comparison, ranking, plots
 - Artifact rejection: explicit criteria, counts per criterion, candidates
 - PHASE 4: SIMBAD/VSX/TOI/TESS EB cross-match, coincident events, persistence
+- PHASE 5: registration in VDX Core (dataset, run, results with plots)

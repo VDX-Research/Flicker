@@ -57,6 +57,7 @@ def main():
 
     summary = {"curves": len(out), "candidates": len(cand), "rerank_on_star_survivors_shared": shared,
                "duration_s": round(time.time() - t0, 1), "params_fingerprint": config.fingerprint(cfg)}
+    config.save_summary("artefatti", sector, label, summary)
     print("scarto:", json.dumps(summary, indent=1))
     print(c.drop(columns="description").to_string(index=False))
     cols = ["rank", "tic", "tmag_hdr", "event", "warnings", "drivers"]

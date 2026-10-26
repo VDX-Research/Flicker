@@ -211,6 +211,7 @@ def main():
         "toi_table_downloaded": TOI_DOWNLOADED,
         "duration_s": round(time.time() - t0, 1), "params_fingerprint": config.fingerprint(cfg),
     }
+    config.save_summary("fase4", sector, label, summary)
     print("confronto:", json.dumps(summary, indent=1, ensure_ascii=False))
     cols = ["rank", "tic", "event", "catalog_label", "catalog_explains", "simbad_otype", "vsx_type",
             "coinc_n", "sospetto_sistematica", "persistence"]
