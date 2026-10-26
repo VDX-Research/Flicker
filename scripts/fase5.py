@@ -137,8 +137,8 @@ def main():
         err = rejected(r)[0]
         log["warnings"].append(f"esecuzione rifiutata: {err}")
         write_log(log, sector, label, commit)
-        hint = ("; il token non è di una source Research (module \"custom\"): creala con "
-                "scripts/create-research-source.ts in Core") if "subject is required" in err else ""
+        hint = ("; il token non è di una source Research (module \"custom\"): creala in Core da "
+                "/admin/engine (Sorgente pipeline Research) o con scripts/create-research-source.ts") if "subject is required" in err else ""
         sys.exit(f"esecuzione rifiutata: {err}{hint}")
     log["run"] = r["results"][0]
     run_id = int(log["run"]["id"])
