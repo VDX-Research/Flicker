@@ -1,0 +1,68 @@
+{
+ "candidates": 50,
+ "catalog_label": {
+  "noto": 29,
+  "assente": 11,
+  "noto con classe diversa": 10
+ },
+ "persistence": {
+  "persistente": 41,
+  "non persistente": 6,
+  "persistenza non verificabile": 3
+ },
+ "sospetto_sistematica": 0,
+ "variabile_vicina": 12,
+ "assente_by_persistence": {
+  "persistente": 9,
+  "non persistente": 1,
+  "persistenza non verificabile": 1
+ },
+ "other_sector_curves": 206,
+ "other_sector_errors": 0,
+ "other_sector_spoc": [
+  "spoc-5.0.10-20200904",
+  "spoc-5.0.100-20230922",
+  "spoc-5.0.11-20200915",
+  "spoc-5.0.122-20250630",
+  "spoc-5.0.123-20250818",
+  "spoc-5.0.124-20250919-1-g4fdf1a46a8",
+  "spoc-5.0.126-20251212",
+  "spoc-5.0.13-20201001",
+  "spoc-5.0.16-20201026",
+  "spoc-5.0.20-20201120",
+  "spoc-5.0.22-20210121",
+  "spoc-5.0.23-20210212",
+  "spoc-5.0.35-20210626",
+  "spoc-5.0.9-20200827",
+  "spoc-5.0.96-20230729",
+  "spoc-5.0.98-20230826",
+  "spoc-5.0.99-20230915"
+ ],
+ "other_sector_data_rel": [
+  38,
+  41,
+  42,
+  43,
+  45,
+  46,
+  55,
+  56,
+  92,
+  94,
+  95,
+  96,
+  98,
+  127,
+  129,
+  130,
+  131,
+  135,
+  137,
+  138,
+  140,
+  142
+ ],
+ "toi_table_downloaded": "2026-10-26",
+ "duration_s": 62.6,
+ "params_fingerprint": "7c11bba8442014f5"
+}
