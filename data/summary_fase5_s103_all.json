@@ -1,0 +1,23 @@
+{
+ "run_id": 2,
+ "run_status": "created",
+ "dataset_linked": true,
+ "results": {
+  "sent": 50,
+  "accepted": 50,
+  "status": {
+   "created": 37,
+   "updated": 13
+  },
+  "rejected": {}
+ },
+ "plots": {
+  "attached": 50,
+  "duplicate": 0,
+  "missing": 0,
+  "errors": 0
+ },
+ "warnings": [],
+ "duration_s": 35.1,
+ "params_fingerprint": "7c11bba8442014f5"
+}
