@@ -19,6 +19,8 @@ dependencies = [
 
 [project.optional-dependencies]
 test = ["pytest==9.1.1"]
+# notebook di revisione (notebooks/review_s103.ipynb)
+notebook = ["jupyterlab==4.6.4", "nbclient==0.11.0", "ipykernel==7.4.0", "nbformat==5.11.1"]
 
 [build-system]
 requires = ["setuptools>=61"]

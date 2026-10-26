@@ -346,6 +346,10 @@ uv pip install --python .venv/bin/python -e ".[test]"
 .venv/bin/python scripts/fase4.py --sample      # cross-match SIMBAD/VSX/TOI/TESS EB, coincidences, persistence
 .venv/bin/python scripts/fase5.py --sample --dry-run  # Core messages to data/outbox/, nothing sent
 .venv/bin/python scripts/fase5.py --sample      # register dataset, run and candidates in VDX Core
+.venv/bin/python scripts/fase6.py --sample      # report for the astronomer, reports/report_s103_sample.md
+
+uv pip install --python .venv/bin/python -e ".[notebook]"
+.venv/bin/jupyter lab notebooks/review_s103.ipynb  # interactive review of the candidates
 ```
 
 Downloaded light curves (`data/cache/lc/`, ~1.9 MB each, ~25 GB total) and cleaned light curves
@@ -378,6 +382,21 @@ sample candidates with the same TIC and links them to the new run. The script re
 from a working tree with uncommitted changes (the commit hash must identify the code) or if the
 parameters changed after any phase. A log of each send is written to `data/runs/`.
 
+## Report (PHASE 6)
+
+`scripts/fase6.py` writes `reports/report_s<sector>_<sample|all>.md`, written for an astronomer who
+did not follow the development: data products (data release, SPOC versions, file dates, catalogue
+query dates), cleaning, features, models, artifact rejection with counts per criterion, cross-match
+labels, persistence, the candidate tables (absent from catalogues, known with a different class,
+persistence not verifiable, known), limits and what v2 should change. All thresholds quoted in the
+text are read from `config/pipeline.toml`. Plots of the candidates absent from catalogues and of those
+with unverifiable persistence are copied to `reports/figures/`, so the report reads without `data/`.
+The report refuses to run if the parameters changed after any phase.
+
+`notebooks/review_s103.ipynb` loads the same tables, shows the candidates to look at first with their
+plots and re-plots any candidate from the cleaned light curve (needs `data/cache/clean/`). Set
+`LABEL = "all"` for the frozen run. Every object is a candidate for verification, never a discovery.
+
 macOS note: if the repository resides in a folder synced with iCloud (Desktop), the editable installation's
 `.pth` file receives the `hidden` attribute flag and Python 3.12 ignores it. For this reason,
 the scripts and pytest automatically add `src/` to `sys.path`.
@@ -391,3 +410,4 @@ the scripts and pytest automatically add `src/` to `sys.path`.
 - Artifact rejection: explicit criteria, counts per criterion, candidates
 - PHASE 4: SIMBAD/VSX/TOI/TESS EB cross-match, coincident events, persistence
 - PHASE 5: registration in VDX Core (dataset, run, results with plots)
+- PHASE 6: report for the astronomer, review notebook
