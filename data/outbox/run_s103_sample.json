@@ -1,0 +1,1001 @@
+{
+  "written_at": "2026-10-26T00:38:10+00:00",
+  "messages": [
+    {
+      "kind": "event",
+      "type": "custom.run",
+      "key": "2da161b-dirty:b8cb320b43cbd27f:S103:sample",
+      "payload": {
+        "commit": "2da161b-dirty",
+        "params": {
+          "frozen": false,
+          "dataset": {
+            "sector": 103,
+            "cadence_s": 120,
+            "data_release": 141,
+            "persistence_sectors_max": 104
+          },
+          "sample": {
+            "size": 3000,
+            "seed": 103,
+            "tmag_edges": [
+              -99.0,
+              8.0,
+              9.0,
+              10.0,
+              11.0,
+              12.0,
+              13.0,
+              99.0
+            ]
+          },
+          "clean": {
+            "quality_bitmask": 16575,
+            "gap_days": 0.5,
+            "min_segment_days": 0.5,
+            "min_points": 1000
+          },
+          "features": {
+            "ls_bin_minutes": 10.0,
+            "ls_min_period_d": 0.05,
+            "ls_max_period_d": 13.0,
+            "ls_samples_per_peak": 5,
+            "flatten_window_d": 1.0,
+            "bls_bin_minutes": 10.0,
+            "bls_min_period_d": 0.5,
+            "bls_max_period_d": 13.0,
+            "bls_durations_h": [
+              1.0,
+              2.0,
+              4.0,
+              8.0
+            ],
+            "bls_frequency_factor": 1.0,
+            "event_sigma": 4.0,
+            "event_min_points": 3
+          },
+          "models": {
+            "seed": 103,
+            "if_n_estimators": 500,
+            "if_max_samples": 256,
+            "lof_n_neighbors": 50,
+            "compare_top_k": [
+              50,
+              100,
+              300
+            ],
+            "top_n": 50
+          },
+          "artifacts": {
+            "max_mad_std": 0.3,
+            "min_crowdsap": 0.5,
+            "max_corr_centr": 0.5,
+            "max_abs_corr_bkg": 0.3,
+            "min_edge_d": 0.1,
+            "max_q512_frac": 0.5,
+            "warn_centr_shift": 20.0,
+            "warn_crowdsap": 0.8
+          },
+          "crossmatch": {
+            "match_radius_arcsec": 5.0,
+            "neighbor_radius_arcsec": 42.0,
+            "coincidence_window_d": 0.05,
+            "coincidence_max_p": 0.001,
+            "persistence_min_snr": 10.0
+          },
+          "label": "sample"
+        },
+        "items": 2980,
+        "duration_s": 177.1,
+        "outcome": "ok"
+      },
+      "objects": [
+        "fe972928-2a38-4fe7-9920-6e740e34bb36",
+        {
+          "type": "custom.dataset",
+          "externalId": "tess-s103-spoc-2min-dr141"
+        }
+      ]
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-214716930",
+      "properties": {
+        "score": 0.997987,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 1 in S103; evento guida: dip; guidato da: log_tail=+36.0, asinh_skew=-22.6, log_std_p2p=+9.0; catalogo: noto (SIMBAD EB*; VSX EA/DM; TESS EB); SIMBAD: V* TV Nor [EB*]; VSX: TV Nor [EA/DM]; persistenza: persistente (S12: SNR 4098, S65: SNR 5113, S102: SNR 2052); avvisi: impulsive_outlier_nell_evento",
+        "extra": {
+          "tic_id": 214716930
+        }
+      },
+      "name": "TIC 214716930",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-292292315",
+      "properties": {
+        "score": 0.997483,
+        "reference": "absent",
+        "run": 0,
+        "note": "Candidato, rank 2 in S103; evento guida: dip; guidato da: log_tail=+84.8, asinh_skew=-25.7, asinh_kurt=+9.7; catalogo: assente; SIMBAD: HD 170312 [*]; persistenza: persistente (S39: SNR 1376, S13: SNR 0, S66: SNR 0, S93: SNR 459, S94: SNR 0, S100: SNR 0, S101: SNR 0, S102: SNR 2347)",
+        "extra": {
+          "tic_id": 292292315
+        }
+      },
+      "name": "TIC 292292315",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-380161624",
+      "properties": {
+        "score": 0.997483,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 3 in S103; evento guida: dip; guidato da: log_tail=+49.5, asinh_skew=-23.0, asinh_kurt=+8.5; catalogo: noto (VSX EA); SIMBAD: ASAS J171002-5758.4 [SB*]; VSX: ASAS J171002-5758.4 [EA]; variabile vicina: Gaia DR3 5916753544040318336 (EB*, 40\"); Gaia DR3 5916753544040318336 (E, 40\"); persistenza: persistente (S39: SNR 1538, S66: SNR 1692, S93: SNR 1466, S100: SNR 1667, S102: SNR 1321)",
+        "extra": {
+          "tic_id": 380161624
+        }
+      },
+      "name": "TIC 380161624",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-133701671",
+      "properties": {
+        "score": 0.996644,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 4 in S103; evento guida: dip; guidato da: log_tail=+52.3, asinh_skew=-24.5, asinh_kurt=+9.2; catalogo: noto (TESS EB); SIMBAD: HD 135769 [*]; persistenza: persistente (S38: SNR 922, S12: SNR 785, S65: SNR 1000, S102: SNR 963)",
+        "extra": {
+          "tic_id": 133701671
+        }
+      },
+      "name": "TIC 133701671",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-403153647",
+      "properties": {
+        "score": 0.993624,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 5 in S103; evento guida: dip; guidato da: log_tail=+27.0, asinh_skew=-22.2, asinh_kurt=+8.3; catalogo: noto (SIMBAD EB*; VSX EA; TESS EB); SIMBAD: HD 212661 [EB?]; VSX: DK Tuc [EA]; persistenza: persistente (S1: SNR 1519, S68: SNR 3133, S102: SNR 1555, S104: SNR 1581); avvisi: impulsive_outlier_nell_evento",
+        "extra": {
+          "tic_id": 403153647
+        }
+      },
+      "name": "TIC 403153647",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-382308684",
+      "properties": {
+        "score": 0.993624,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 6 in S103; evento guida: dip; guidato da: log_tail=+62.1, asinh_skew=-26.9, asinh_kurt=+10.5; catalogo: noto (TESS EB); SIMBAD: TYC 9083-488-1 [SB*]; persistenza: persistente (S13: SNR 328, S67: SNR 388, S66: SNR 363, S93: SNR 388, S101: SNR 402, S102: SNR 406, S104: SNR 394); avvisi: spostamento_centroide",
+        "extra": {
+          "tic_id": 382308684
+        }
+      },
+      "name": "TIC 382308684",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-265469420",
+      "properties": {
+        "score": 0.991611,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 7 in S103; evento guida: dip; guidato da: log_tail=+62.4, asinh_skew=-26.3, asinh_kurt=+10.2; catalogo: noto (VSX EA); SIMBAD: TYC 9102-351-1 [SB*]; VSX: KELT KS29C18368 [EA]; persistenza: persistente (S1: SNR 337, S94: SNR 0, S95: SNR 362, S101: SNR 346, S102: SNR 366, S104: SNR 0)",
+        "extra": {
+          "tic_id": 265469420
+        }
+      },
+      "name": "TIC 265469420",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-410314066",
+      "properties": {
+        "score": 0.990772,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 8 in S103; evento guida: dip; guidato da: log_tail=+54.5, asinh_skew=-29.0, asinh_kurt=+11.3; catalogo: noto (VSX EA); SIMBAD: HD 188622 [**]; VSX: KELT KS27C005722 [EA]; persistenza: persistente (S67: SNR 0, S94: SNR 549, S101: SNR 537, S104: SNR 0)",
+        "extra": {
+          "tic_id": 410314066
+        }
+      },
+      "name": "TIC 410314066",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-129309458",
+      "properties": {
+        "score": 0.989933,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 9 in S103; evento guida: flare; guidato da: asinh_skew=+36.1, log_tail=+16.8, asinh_kurt=+14.8; catalogo: noto (SIMBAD Y*O); SIMBAD: Gaia DR3 6100482559819865856 [Y*?]; persistenza: persistente (S102: SNR 46); avvisi: spostamento_centroide; impulsive_outlier_nell_evento; contaminazione_parziale",
+        "extra": {
+          "tic_id": 129309458
+        }
+      },
+      "name": "TIC 129309458",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-201290666",
+      "properties": {
+        "score": 0.98943,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 11 in S103; evento guida: flare; guidato da: log_tail=+22.2, asinh_skew=+19.8, asinh_kurt=+10.5; catalogo: noto con classe diversa; SIMBAD: CD-60     8 [*]; VSX: ASAS J001009-5921.2 [ROT]; variabile vicina: CD-60     8B (EB*, 20\"); persistenza: persistente (S102: SNR 52, S104: SNR 11)",
+        "extra": {
+          "tic_id": 201290666
+        }
+      },
+      "name": "TIC 201290666",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-425937691",
+      "properties": {
+        "score": 0.98557,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 14 in S103; evento guida: flare; guidato da: asinh_skew=+44.7, asinh_kurt=+18.8, log1p_flare_snr=+6.0; catalogo: noto (SIMBAD TT*); SIMBAD: UCAC3 53-724 [TT*]; persistenza: persistente (S28: SNR 160, S2: SNR 28, S1: SNR 19, S68: SNR 46, S69: SNR 42, S95: SNR 15, S102: SNR 171, S96: SNR 14, S104: SNR 69); avvisi: spostamento_centroide; impulsive_outlier_nell_evento",
+        "extra": {
+          "tic_id": 425937691
+        }
+      },
+      "name": "TIC 425937691",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-116880230",
+      "properties": {
+        "score": 0.983893,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 17 in S103; evento guida: dip; guidato da: log_tail=+27.5, asinh_skew=-23.8, asinh_kurt=+10.0; catalogo: noto (VSX EA); SIMBAD: TYC 7525-245-1 [SB*]; VSX: KELT KS18C06229 [EA]; persistenza: persistente (S69: SNR 63, S96: SNR 208, S104: SNR 244)",
+        "extra": {
+          "tic_id": 116880230
+        }
+      },
+      "name": "TIC 116880230",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-263385369",
+      "properties": {
+        "score": 0.983221,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 18 in S103; evento guida: flare; guidato da: log_amp90_p2p=+9.0, log_eta=-8.5, log_std_p2p=+8.4; catalogo: noto con classe diversa; SIMBAD: HD 139966 [cC*]; VSX: TYC 8308-2055-1 [DCEPS(B)]; variabile vicina: V* HH Nor (EB*, 12\"); HH Nor (EA/DS, 12\"); persistenza: non persistente (S12: SNR 0, S102: SNR 0); avvisi: contaminazione_parziale",
+        "extra": {
+          "tic_id": 263385369
+        }
+      },
+      "name": "TIC 263385369",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-129893000",
+      "properties": {
+        "score": 0.979866,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 21 in S103; evento guida: flare; guidato da: asinh_skew=+38.0, asinh_kurt=+15.6, log1p_flare_snr=+6.7; catalogo: noto (SIMBAD Y*O); SIMBAD: UCAC4 226-085946 [Y*?]; VSX: ASASSN-V J145031.94-445238.1 [ROT]; persistenza: persistente (S102: SNR 54); avvisi: spostamento_centroide; impulsive_outlier_nell_evento; contaminazione_parziale",
+        "extra": {
+          "tic_id": 129893000
+        }
+      },
+      "name": "TIC 129893000",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-115693377",
+      "properties": {
+        "score": 0.979362,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 22 in S103; evento guida: dip; guidato da: log_tail=+33.5, asinh_skew=-21.7, asinh_kurt=+8.9; catalogo: noto (VSX EA; TESS EB); SIMBAD: TYC 7528-481-1 [SB*]; VSX: KELT KS18C16015 [EA]; persistenza: persistente (S2: SNR 91, S69: SNR 93, S104: SNR 91)",
+        "extra": {
+          "tic_id": 115693377
+        }
+      },
+      "name": "TIC 115693377",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-313907706",
+      "properties": {
+        "score": 0.977013,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 24 in S103; evento guida: dip; guidato da: asinh_skew=-18.1, log_amp90_p2p=+9.1, log_eta=-8.6; catalogo: noto (VSX EA); SIMBAD: HD 132553 [SB*]; VSX: ASAS J150145-5242.2 [EA]; variabile vicina: Gaia DR3 5899954277681290240 (ROT, 31\"); persistenza: persistente (S38: SNR 2870, S65: SNR 2823, S99: SNR 1324, S102: SNR 2372)",
+        "extra": {
+          "tic_id": 313907706
+        }
+      },
+      "name": "TIC 313907706",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-271502836",
+      "properties": {
+        "score": 0.975168,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 26 in S103; evento guida: flare; guidato da: asinh_skew=+41.3, asinh_kurt=+17.3, log1p_flare_snr=+5.5; catalogo: noto (VSX UV); SIMBAD: UPM J0030-6550 [PM*]; VSX: ASASSN-20ns [UV]; persistenza: persistente (S104: SNR 331); avvisi: contaminazione_parziale",
+        "extra": {
+          "tic_id": 271502836
+        }
+      },
+      "name": "TIC 271502836",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-58142170",
+      "properties": {
+        "score": 0.973322,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 27 in S103; evento guida: dip; guidato da: log_tail=+23.6, asinh_skew=-18.8, asinh_kurt=+7.3; catalogo: noto (VSX EA); SIMBAD: HD 151850 [SB*]; VSX: KELT KS36C003645 [EA]; variabile vicina: Gaia DR3 5936687969099146112 (EB*, 35\"); Gaia DR3 5936687969099146112 (E, 35\"); persistenza: persistente (S66: SNR 438, S93: SNR 185, S104: SNR 417)",
+        "extra": {
+          "tic_id": 58142170
+        }
+      },
+      "name": "TIC 58142170",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-149064422",
+      "properties": {
+        "score": 0.970134,
+        "reference": "absent",
+        "run": 0,
+        "note": "Candidato, rank 31 in S103; evento guida: flare; guidato da: asinh_skew=+40.8, asinh_kurt=+17.4, log1p_flare_snr=+5.0; catalogo: assente; SIMBAD: Gaia DR3 6007435426246132736 [*]; persistenza: persistenza non verificabile (nessun altro settore)",
+        "extra": {
+          "tic_id": 149064422
+        }
+      },
+      "name": "TIC 149064422",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-246552414",
+      "properties": {
+        "score": 0.969966,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 32 in S103; evento guida: dip; guidato da: asinh_skew=-12.2, log_tail=-9.8, log_amp90_p2p=+8.3; catalogo: noto (SIMBAD EB*; VSX ESD|ED); SIMBAD: HD 151791 [EB*]; VSX: ASAS J165135-4429.7 [ESD|ED]; variabile vicina: TYC 7880-2706-1 (Pu*, 35\"); Gaia DR3 5964385143668988544 (DSCT|GDOR|SXPHE, 35\"); persistenza: persistente (S66: SNR 447, S93: SNR 420)",
+        "extra": {
+          "tic_id": 246552414
+        }
+      },
+      "name": "TIC 246552414",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-95977956",
+      "properties": {
+        "score": 0.969966,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 33 in S103; evento guida: dip; guidato da: log_tail=+6.4, log_eta=-6.0, log_amp90_p2p=+5.8; catalogo: noto (SIMBAD TT*; VSX CTTS/ROT); SIMBAD: WRAY 15-1443 [TT*]; VSX: ASAS J161520-3255.1 [CTTS/ROT]; persistenza: persistente (S12: SNR 40)",
+        "extra": {
+          "tic_id": 95977956
+        }
+      },
+      "name": "TIC 95977956",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-464765603",
+      "properties": {
+        "score": 0.967785,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 36 in S103; evento guida: dip; guidato da: asinh_skew=-14.3, log_amp90_p2p=+9.4, log_eta=-9.2; catalogo: noto (SIMBAD EB*; VSX ED); SIMBAD: CD-38 10937 [EB*]; VSX: ASAS J161710-3840.9 [ED]; persistenza: persistente (S39: SNR 1132, S65: SNR 899)",
+        "extra": {
+          "tic_id": 464765603
+        }
+      },
+      "name": "TIC 464765603",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-469974264",
+      "properties": {
+        "score": 0.96745,
+        "reference": "absent",
+        "run": 0,
+        "note": "Candidato, rank 37 in S103; evento guida: dip; guidato da: asinh_skew=-30.4, asinh_kurt=+12.2, log1p_dip_snr=+5.7; catalogo: assente; persistenza: persistente (S95: SNR 118, S96: SNR 0, S104: SNR 123)",
+        "extra": {
+          "tic_id": 469974264
+        }
+      },
+      "name": "TIC 469974264",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-372300399",
+      "properties": {
+        "score": 0.964597,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 39 in S103; evento guida: dip; guidato da: asinh_skew=-13.6, log_amp90_p2p=+9.6, log_std_p2p=+8.9; catalogo: noto (VSX EA/SD); SIMBAD: HD 199005A [SB*]; VSX: KZ Pav [EA/SD]; persistenza: persistente (S101: SNR 80, S102: SNR 82, S104: SNR 73); avvisi: contaminazione_parziale",
+        "extra": {
+          "tic_id": 372300399
+        }
+      },
+      "name": "TIC 372300399",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-365774148",
+      "properties": {
+        "score": 0.963758,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 41 in S103; evento guida: dip; guidato da: asinh_skew=-15.5, log_tail=-6.6, log_amp90_p2p=+6.5; catalogo: noto (SIMBAD EB*); SIMBAD: UNSW-V 598 [EB*]; variabile vicina: Gaia DR3 6629932451224667904 (ROT, 37\"); UNSW-V 598 (EA, 6\"); persistenza: persistente (S100: SNR 64, S102: SNR 98, S104: SNR 186)",
+        "extra": {
+          "tic_id": 365774148
+        }
+      },
+      "name": "TIC 365774148",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-246957312",
+      "properties": {
+        "score": 0.961745,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 43 in S103; evento guida: dip; guidato da: log_amp90_p2p=+8.1, asinh_skew=-7.8, log_eta=-7.7; catalogo: noto con classe diversa; SIMBAD: HD 152235 [s*b]; VSX: V0900 Sco [ELL:]; variabile vicina: CXOU J165359.8-415935 (Y*O, 13\"); Gaia DR3 5966501497401307008 (L, 21\"); persistenza: persistente (S39: SNR 89)",
+        "extra": {
+          "tic_id": 246957312
+        }
+      },
+      "name": "TIC 246957312",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-410151515",
+      "properties": {
+        "score": 0.959899,
+        "reference": "absent",
+        "run": 0,
+        "note": "Candidato, rank 45 in S103; evento guida: dip; guidato da: log_tail=+23.8, asinh_skew=-17.8, asinh_kurt=+7.1; catalogo: assente; SIMBAD: HD 214554 [*]; persistenza: persistente (S28: SNR 97, S67: SNR 100, S68: SNR 96, S94: SNR 97, S95: SNR 90, S101: SNR 90, S102: SNR 76, S104: SNR 100)",
+        "extra": {
+          "tic_id": 410151515
+        }
+      },
+      "name": "TIC 410151515",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-142329176",
+      "properties": {
+        "score": 0.958557,
+        "reference": "absent",
+        "run": 0,
+        "note": "Candidato, rank 47 in S103; evento guida: dip; guidato da: asinh_skew=-13.5, log1p_dip_snr=+5.0, log_tail=-4.5; catalogo: assente; SIMBAD: HD 137217 [*]; persistenza: persistente (S102: SNR 165)",
+        "extra": {
+          "tic_id": 142329176
+        }
+      },
+      "name": "TIC 142329176",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-314018646",
+      "properties": {
+        "score": 0.957886,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 49 in S103; evento guida: flare; guidato da: asinh_skew=+39.6, asinh_kurt=+17.3, log1p_flare_snr=+4.6; catalogo: noto (VSX BY); SIMBAD: LP  988-129 [**]; VSX: 2MASS J00094508-4201396 [BY]; persistenza: persistente (S29: SNR 37, S2: SNR 44, S69: SNR 37, S96: SNR 105, S104: SNR 18)",
+        "extra": {
+          "tic_id": 314018646
+        }
+      },
+      "name": "TIC 314018646",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-101963547",
+      "properties": {
+        "score": 0.950168,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 53 in S103; evento guida: dip; guidato da: asinh_skew=-16.3, log_amp90_p2p=+5.8, log_eta=-5.6; catalogo: noto (SIMBAD EB*; VSX EA); SIMBAD: TYC 8032-163-1 [EB*]; VSX: ASASSN-V J010050.91-471203.0 [EA]; persistenza: persistente (S104: SNR 123)",
+        "extra": {
+          "tic_id": 101963547
+        }
+      },
+      "name": "TIC 101963547",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-360541225",
+      "properties": {
+        "score": 0.946812,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 58 in S103; evento guida: dip; guidato da: asinh_skew=-6.1, log_noise_ratio=+5.9, log1p_flare_snr=+4.2; catalogo: noto con classe diversa; SIMBAD: V* MO TrA [LP*]; VSX: MO TrA [SRB]; variabile vicina: Gaia DR3 5822188882581056896 (ROT, 22\"); persistenza: persistente (S39: SNR 52, S66: SNR 46, S65: SNR 61, S93: SNR 497, S100: SNR 133, S101: SNR 41, S102: SNR 307)",
+        "extra": {
+          "tic_id": 360541225
+        }
+      },
+      "name": "TIC 360541225",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-341258182",
+      "properties": {
+        "score": 0.943289,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 62 in S103; evento guida: dip; guidato da: asinh_skew=-19.4, log_tail=+13.7, log_amp90_p2p=+8.5; catalogo: noto (VSX EA; TESS EB); SIMBAD: V* V1297 Sco [SB*]; VSX: V1297 Sco [EA]; variabile vicina: 2MASS J16560767-4020274 (LP*, 41\"); Gaia DR3 5969715644761918208 (L, 41\"); persistenza: persistente (S39: SNR 1673, S12: SNR 1560, S66: SNR 2052, S93: SNR 1013); avvisi: spostamento_centroide",
+        "extra": {
+          "tic_id": 341258182
+        }
+      },
+      "name": "TIC 341258182",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-374457616",
+      "properties": {
+        "score": 0.936074,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 71 in S103; evento guida: flare; guidato da: log_amp90_p2p=+6.3, log_eta=-6.2, log_std_p2p=+5.8; catalogo: noto (SIMBAD Or*; VSX INT); SIMBAD: V* HO Lup [Or*]; VSX: HO Lup [INT]; variabile vicina: V* HO Lup B (Y*O, 2\"); V* HO Lup A (Or*, 1\"); persistenza: persistenza non verificabile (nessun altro settore)",
+        "extra": {
+          "tic_id": 374457616
+        }
+      },
+      "name": "TIC 374457616",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-281728276",
+      "properties": {
+        "score": 0.934732,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 72 in S103; evento guida: dip; guidato da: log_tail=-11.7, asinh_skew=-6.4, log_noise_ratio=+6.1; catalogo: noto (VSX EW; TESS EB); SIMBAD: CD-55   157A [PM*]; VSX: NSV 295 [EW]; variabile vicina: CD-55   157B (EB*, 4\"); persistenza: non persistente (S29: SNR 0, S2: SNR 0, S68: SNR 0, S69: SNR 0, S104: SNR 0); avvisi: contaminazione_parziale",
+        "extra": {
+          "tic_id": 281728276
+        }
+      },
+      "name": "TIC 281728276",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-6631253",
+      "properties": {
+        "score": 0.932886,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 75 in S103; evento guida: dip; guidato da: asinh_skew=-19.5, log_amp90_p2p=+8.6, log_eta=-8.2; catalogo: noto (SIMBAD EB*; VSX EA); SIMBAD: HD 147827 [EB*]; VSX: ASAS J162637-5042.8 [EA]; persistenza: persistente (S39: SNR 2814, S66: SNR 2453, S93: SNR 2252); avvisi: spostamento_centroide",
+        "extra": {
+          "tic_id": 6631253
+        }
+      },
+      "name": "TIC 6631253",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-300955434",
+      "properties": {
+        "score": 0.92802,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 78 in S103; evento guida: dip; guidato da: asinh_skew=-18.2, log_amp90_p2p=+9.2, log_eta=-8.6; catalogo: noto (SIMBAD EB*; VSX EA+DSCT); SIMBAD: V* GQ TrA [EB*]; VSX: GQ TrA [EA+DSCT]; persistenza: persistente (S100: SNR 272, S101: SNR 267, S102: SNR 267)",
+        "extra": {
+          "tic_id": 300955434
+        }
+      },
+      "name": "TIC 300955434",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-122162363",
+      "properties": {
+        "score": 0.92802,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 79 in S103; evento guida: dip; guidato da: log_amp90_p2p=+8.9, log_tail=-8.9, log_std_p2p=+8.4; catalogo: noto con classe diversa; SIMBAD: V* HR Lup [a2*]; VSX: HR Lup [SXARI]; persistenza: non persistente (S38: SNR 0, S11: SNR 0, S65: SNR 0, S102: SNR 0)",
+        "extra": {
+          "tic_id": 122162363
+        }
+      },
+      "name": "TIC 122162363",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-138188560",
+      "properties": {
+        "score": 0.927517,
+        "reference": "absent",
+        "run": 0,
+        "note": "Candidato, rank 81 in S103; evento guida: dip; guidato da: log_tail=+4.6, asinh_skew=-4.1, log1p_flare_snr=+3.7; catalogo: assente; SIMBAD: HD 136505 [*]; variabile vicina: Gaia DR3 5889651377041608448 (DSCT|GDOR|SXPHE, 37\"); Gaia DR3 5889651308322116864 (ROT, 15\"); persistenza: persistente (S38: SNR 20, S12: SNR 52, S65: SNR 7, S102: SNR 16)",
+        "extra": {
+          "tic_id": 138188560
+        }
+      },
+      "name": "TIC 138188560",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-374644882",
+      "properties": {
+        "score": 0.926846,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 84 in S103; evento guida: dip; guidato da: asinh_skew=-5.8, log_tail=+5.6, log1p_dip_snr=+4.2; catalogo: noto (SIMBAD TT*; VSX YSO); SIMBAD: Sz  95 [TT*]; VSX: ASASSN-V J160752.30-385805.9 [YSO]; persistenza: persistenza non verificabile (nessun altro settore); avvisi: contaminazione_parziale",
+        "extra": {
+          "tic_id": 374644882
+        }
+      },
+      "name": "TIC 374644882",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-327785134",
+      "properties": {
+        "score": 0.925336,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 85 in S103; evento guida: dip; guidato da: asinh_skew=-17.5, log_amp90_p2p=+8.9, log_std_p2p=+8.2; catalogo: noto (SIMBAD EB*; VSX EA/RS:; TESS EB); SIMBAD: V* DU Oct [EB*]; VSX: DU Oct [EA/RS:]; persistenza: persistente (S27: SNR 495, S13: SNR 391, S67: SNR 247, S66: SNR 287, S93: SNR 228, S94: SNR 330, S101: SNR 295, S102: SNR 221)",
+        "extra": {
+          "tic_id": 327785134
+        }
+      },
+      "name": "TIC 327785134",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-2743109",
+      "properties": {
+        "score": 0.923993,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 87 in S103; evento guida: flare; guidato da: log_amp90_p2p=+7.0, log_eta=-6.9, log_std_p2p=+6.6; catalogo: noto con classe diversa; SIMBAD: HD 147558 [Pu*]; VSX: Gaia DR3 5941492693109589248 [DSCT|GDOR|SXPHE]; variabile vicina: Gaia DR3 5941489742482330752 (RR*, 30\"); ASTEP V-0907 (Ro*, 36\"); Gaia DR3 5941492697433852160 (DSCT|GDOR|SXPHE, 36\"); Gaia DR3 5941489742482330752 (RRC, 30\"); persistenza: persistente (S39: SNR 0, S12: SNR 0, S66: SNR 0, S93: SNR 32)",
+        "extra": {
+          "tic_id": 2743109
+        }
+      },
+      "name": "TIC 2743109",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-160502580",
+      "properties": {
+        "score": 0.922819,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 92 in S103; evento guida: flare; guidato da: asinh_skew=+22.2, asinh_kurt=+11.4, log_tail=-8.2; catalogo: noto (SIMBAD TT*; VSX RS); SIMBAD: TYC 7824-2095-1 [TT*]; VSX: Gaia DR3 6198087096066975744 [RS]; persistenza: persistente (S11: SNR 35, S65: SNR 31, S102: SNR 480)",
+        "extra": {
+          "tic_id": 160502580
+        }
+      },
+      "name": "TIC 160502580",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-229807000",
+      "properties": {
+        "score": 0.922819,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 93 in S103; evento guida: flare; guidato da: asinh_skew=+9.0, asinh_kurt=+7.1, log_tail=-7.0; catalogo: noto con classe diversa; SIMBAD: 1RXS J232857.5-680225 [PM*]; VSX: ASAS J232857-6802.4 [ROT]; persistenza: persistente (S27: SNR 42, S28: SNR 20, S1: SNR 50, S67: SNR 122, S68: SNR 24, S94: SNR 21, S95: SNR 43, S102: SNR 46, S104: SNR 9)",
+        "extra": {
+          "tic_id": 229807000
+        }
+      },
+      "name": "TIC 229807000",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-197960398",
+      "properties": {
+        "score": 0.920973,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 97 in S103; evento guida: flare; guidato da: asinh_skew=+9.7, log_tail=-7.5, asinh_kurt=+6.6; catalogo: noto con classe diversa; SIMBAD: 1RXS J231318.1-493322 [PM*]; VSX: ASAS J231318-4933.3 [ROT]; persistenza: persistente (S28: SNR 85, S68: SNR 456, S95: SNR 44, S102: SNR 29, S96: SNR 32, S104: SNR 91)",
+        "extra": {
+          "tic_id": 197960398
+        }
+      },
+      "name": "TIC 197960398",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-364361425",
+      "properties": {
+        "score": 0.918121,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 100 in S103; evento guida: dip; guidato da: asinh_skew=-9.5, log_amp90_p2p=+6.4, log_eta=-6.2; catalogo: noto con classe diversa; SIMBAD: HD 146219 [*]; VSX: Gaia DR3 6021822978270475776 [RS]; persistenza: persistente (S39: SNR 48, S65: SNR 46)",
+        "extra": {
+          "tic_id": 364361425
+        }
+      },
+      "name": "TIC 364361425",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-344237828",
+      "properties": {
+        "score": 0.917785,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 101 in S103; evento guida: dip; guidato da: log_amp90_p2p=+6.9, log_std_p2p=+6.3, log_eta=-6.0; catalogo: noto con classe diversa; SIMBAD: HD 150898 [s*b]; VSX: NSV 20763 []; persistenza: persistente (S39: SNR 0, S12: SNR 38, S66: SNR 0, S93: SNR 0, S100: SNR 37, S102: SNR 0)",
+        "extra": {
+          "tic_id": 344237828
+        }
+      },
+      "name": "TIC 344237828",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-281741629",
+      "properties": {
+        "score": 0.917282,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 102 in S103; evento guida: flare; guidato da: asinh_skew=+5.8, log_amp90_p2p=+4.2, log_eta=-4.1; catalogo: noto con classe diversa; SIMBAD: CD-56   152 [Be*]; VSX: BG Phe [BE]; persistenza: persistente (S28: SNR 0, S29: SNR 0, S2: SNR 39, S69: SNR 0, S96: SNR 0, S104: SNR 0)",
+        "extra": {
+          "tic_id": 281741629
+        }
+      },
+      "name": "TIC 281741629",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-343952976",
+      "properties": {
+        "score": 0.914262,
+        "reference": "known",
+        "run": 0,
+        "note": "Candidato, rank 108 in S103; evento guida: dip; guidato da: log_tail=+19.7, asinh_skew=-14.5, asinh_kurt=+5.9; catalogo: noto (TOI); SIMBAD: TOI-4283 [*]; TOI 4283.01 PC; persistenza: persistente (S66: SNR 37, S93: SNR 42, S94: SNR 36, S100: SNR 42, S101: SNR 44, S102: SNR 45)",
+        "extra": {
+          "tic_id": 343952976
+        }
+      },
+      "name": "TIC 343952976",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-281763691",
+      "properties": {
+        "score": 0.914094,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 109 in S103; evento guida: dip; guidato da: asinh_skew=-12.2, log_noise_ratio=+5.3, log_amp90_p2p=+4.2; catalogo: noto con classe diversa; SIMBAD: V* BU Phe [LP*]; VSX: BU Phe [SRB]; persistenza: persistente (S28: SNR 117, S29: SNR 0, S1: SNR 46, S68: SNR 12, S69: SNR 9, S2: SNR 124, S95: SNR 172, S96: SNR 65, S104: SNR 52)",
+        "extra": {
+          "tic_id": 281763691
+        }
+      },
+      "name": "TIC 281763691",
+      "defaults": {
+        "review": "to_review"
+      }
+    },
+    {
+      "kind": "object",
+      "type": "custom.result",
+      "externalId": "s103-tic-58749494",
+      "properties": {
+        "score": 0.913255,
+        "reference": "known_other",
+        "run": 0,
+        "note": "Candidato, rank 110 in S103; evento guida: dip; guidato da: log_amp90_p2p=+8.2, log_eta=-8.0, asinh_skew=-7.9; catalogo: noto con classe diversa; SIMBAD: WRAY 15-1392 [Em*]; VSX: ASAS J155745-4049.5 [MISC]; persistenza: persistente (S12: SNR 19)",
+        "extra": {
+          "tic_id": 58749494
+        }
+      },
+      "name": "TIC 58749494",
+      "defaults": {
+        "review": "to_review"
+      }
+    }
+  ]
+}

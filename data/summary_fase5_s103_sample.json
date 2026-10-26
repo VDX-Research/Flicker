@@ -1,0 +1,25 @@
+{
+ "run_id": 1,
+ "run_status": "duplicate",
+ "dataset_linked": false,
+ "results": {
+  "sent": 50,
+  "accepted": 50,
+  "status": {
+   "unchanged": 50
+  },
+  "rejected": {}
+ },
+ "plots": {
+  "attached": 0,
+  "duplicate": 50,
+  "missing": 0,
+  "errors": 0
+ },
+ "warnings": [
+  "dataset rifiutato: custom.dataset is outside this source's scope; crealo dalla console con externalId tess-s103-spoc-2min-dr141",
+  "50 risultati rifiutati con extra (property \"extra\": unknown property \"tic_id\"): inviati senza"
+ ],
+ "duration_s": 20.3,
+ "params_fingerprint": "b8cb320b43cbd27f"
+}
