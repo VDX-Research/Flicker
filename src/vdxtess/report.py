@@ -244,6 +244,11 @@ def build(s: dict, products: dict, cand: pd.DataFrame, counts: pd.DataFrame, que
           "list some `assente` candidates. Answers are cached at the query dates above.",
           "- TESS pixels are 21\": a nearby star can be the true source. Crowding is only filtered by `CROWDSAP`; "
           "no pixel-level centroid analysis was done.",
+          f"- Isolation Forest and LOF agree weakly (Spearman ρ {f3['spearman_if_lof']:.2f}, "
+          f"{f3['overlap_top50']} of the top 50 shared)"
+          + (f", less than on the development sample (ρ {meta['dev_fase3']['spearman_if_lof']:.2f}, "
+             f"{meta['dev_fase3']['overlap_top50']} shared)" if meta.get("dev_fase3") else "")
+          + ": the candidate list depends on the choice of model, and other anomalous stars sit just below the cut.",
           f"- Persistence checks only the same event type with SNR ≥ {snr:g}, and only in sectors up to {smax}.",
           "- Thresholds were tuned on the development sample."
           + (" The sample numbers are therefore optimistic." if sample else ""), ""]

@@ -95,6 +95,10 @@ def main():
             "min_snr": cfg["crossmatch"]["persistence_min_snr"], "match_arcsec": cfg["crossmatch"]["match_radius_arcsec"],
             "neighbor_arcsec": cfg["crossmatch"]["neighbor_radius_arcsec"],
             "sectors_max": cfg["dataset"]["persistence_sectors_max"]}
+    # accordo IF/LOF sul campione di sviluppo, per confrontarlo con la corsa finale nei limiti
+    dev = DATA / f"summary_fase3_s{sector:03d}_sample.json"
+    if label == "all" and dev.exists():
+        meta["dev_fase3"] = json.loads(dev.read_text())
     md = report.build(s, products, cand, counts, query_window(set(cand.tic.astype(int))), meta, figures)
     out = REPORTS / f"report_s{sector:03d}_{label}.md"
     out.write_text(md + "\n")
