@@ -330,6 +330,21 @@ Five of the six are bright stars with dips that persist across sectors. The most
 eclipsing binaries that have not yet been catalogued, or that are listed in catalogues not queried here.
 For TIC 138188560, the 15" neighbour also has to be excluded as the source.
 
+**Final results** (all 12,995 targets, frozen parameters, fingerprint `7c11bba8442014f5`). The full report is
+in `reports/report_s103_all.md` and is registered in VDX Core as run 2.
+
+- 12,919 curves kept and 76 excluded (median flux ≤ 0). 5,952 stars pass the artifact criteria.
+- 50 candidates: 29 `noto`, 10 `noto con classe diversa`, 11 `assente`.
+- The 11 `assente` candidates: 9 persistente, 1 non persistente, 1 persistenza non verificabile.
+- Persistence over all 50: 41 persistente, 6 non persistente, 3 persistenza non verificabile.
+- 0 `sospetto_sistematica`; 12 with a known variable star within 42".
+- Isolation Forest and LOF agree much less than on the sample: Spearman ρ 0.27 versus 0.53, with 3 versus 10
+  shared in the top 50. The candidate list therefore depends on the choice of model.
+
+Two `assente` candidates from the sample appear again in the final run: TIC 292292315 and TIC 469974264. The
+others fall below the cut once all 12,995 stars are ranked. A ranking is relative to its population, so
+this is expected.
+
 ## Usage
 
 ```bash
