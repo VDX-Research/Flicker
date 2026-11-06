@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23992293.svg)](https://doi.org/10.5281/zenodo.23992293)
+
 # vdx-research-tess
 
 Reproducible VDX Research pipeline that searches TESS Sector 103 light curves for
