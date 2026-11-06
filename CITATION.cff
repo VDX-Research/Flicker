@@ -7,7 +7,7 @@ authors:
   - family-names: Odorico
     given-names: Filippo
     affiliation: VDX Research
-repository-code: "https://github.com/NOME-ORGANIZZAZIONE/vdx-research-tess"
+repository-code: "https://github.com/VDX-Research/Flicker.git"
 license: MIT
 keywords:
   - astronomy
