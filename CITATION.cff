@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Flicker: a reproducible search for uncatalogued photometric anomalies in TESS Sector 103"
+version: 1.0.0
+date-released: 2026-11-06
+authors:
+  - family-names: Odorico
+    given-names: Filippo
+    affiliation: VDX Research
+repository-code: "https://github.com/NOME-ORGANIZZAZIONE/vdx-research-tess"
+license: MIT
+keywords:
+  - astronomy
+  - TESS
+  - light curves
+  - anomaly detection
+  - eclipsing binaries
+abstract: >-
+  Reproducible pipeline that searches 12,995 TESS Sector 103 light curves for
+  anomalous objects not yet catalogued, with documented artifact rejection,
+  catalogue cross-match and multi-sector persistence checks. Results are
+  candidates for verification, not discoveries.
